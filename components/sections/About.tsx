@@ -47,7 +47,7 @@ export function About() {
   const words = bio.split(" ");
 
   const stats = [
-    { value: 10, suffix: "+", text: "Professional Designs" },
+    { value: 30, suffix: "+", text: "Professional Designs" },
     { value: 3, suffix: "", text: "Leadership Roles" },
     { value: 100, suffix: "%", text: "Canva Expertise" },
     { value: 4, suffix: "th\n", text: "Semester CS Student" } // 4th Semester

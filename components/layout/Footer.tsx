@@ -11,9 +11,8 @@ export function Footer() {
         </div>
         <div className="flex flex-col items-center md:items-end gap-6 mt-8 md:mt-0">
           <div className="text-sm font-bold text-white/90 flex gap-8">
-            <a href="https://linkedin.com/in/abdullaahsajid" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:-translate-y-1 transform inline-block">LinkedIn</a>
-            <a href="https://behance.net/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:-translate-y-1 transform inline-block">Behance</a>
-            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:-translate-y-1 transform inline-block">Instagram</a>
+            <a href="https://linkedin.com/in/abdullahsajid100" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:-translate-y-1 transform inline-block">LinkedIn</a>
+            <a href="https://instagram.com/__abdullahsajid" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:-translate-y-1 transform inline-block">Instagram</a>
           </div>
           <p className="text-sm text-white/40 font-mono mt-4">
             © {new Date().getFullYear()} Abdullah Sajid. Powered by Next.js & Lenis.
