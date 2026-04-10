@@ -42,8 +42,8 @@ export function Portfolio() {
           <div className="h-px flex-1 bg-white/10" />
         </motion.div>
 
-        {/* Pure Masonry Design Gallery Without Text Constraints */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+        {/* Mobile: iOS Style Square Album Grid, Desktop: Variable Masonry Layout */}
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:block md:columns-2 lg:columns-3 md:gap-6 md:space-y-6">
           {projects.map((project, i) => (
             <motion.div
               key={project.id}
@@ -55,23 +55,23 @@ export function Portfolio() {
             >
               <motion.div 
                 layoutId={`layout-image-${project.id}`}
-                className="relative rounded-[2rem] overflow-hidden bg-black/50 border border-white/5 isolate flex items-center justify-center p-2 shadow-xl"
+                className="relative rounded-xl md:rounded-[2rem] overflow-hidden bg-black/50 border border-white/5 md:mb-4 isolate flex items-center justify-center md:p-2 shadow-xl aspect-square md:aspect-auto"
               >
                 
                 <img 
                   src={project.image} 
                   alt="Gallery Design"
-                  className="w-full h-auto object-contain rounded-[1.5rem] transition-transform duration-700 group-hover:scale-[1.02] z-0"
+                  className="absolute md:relative inset-0 w-full h-full md:h-auto object-cover md:object-contain md:rounded-[1.5rem] transition-transform duration-700 group-hover:scale-[1.05] md:group-hover:scale-[1.02] z-0"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}
                 />
                 
                 {/* Hover States */}
-                <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none">
+                <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hidden md:block" />
+                <div className="absolute inset-0 flex-col items-center justify-center z-20 pointer-events-none hidden md:flex">
                   <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 text-sm shadow-2xl">
-                    <span className="font-heading font-bold">Focus</span>
+                    <span className="font-heading font-bold text-white">Focus</span>
                   </div>
                 </div>
 
