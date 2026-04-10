@@ -29,7 +29,7 @@ export function Portfolio() {
   }
 
   return (
-    <section id="work" className="py-24 md:py-32 relative z-10" ref={ref}>
+    <section id="work" className={`py-24 md:py-32 relative ${selectedImage ? "z-[100]" : "z-10"}`} ref={ref}>
       <div className="container mx-auto px-6 md:px-12">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
