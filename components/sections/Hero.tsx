@@ -47,21 +47,25 @@ export function Hero() {
           </span>
         </motion.div>
 
-        <h1 className="text-[clamp(3rem,8vw,8rem)] font-heading font-bold leading-[0.9] tracking-tighter mb-6 flex flex-wrap">
-          {nameLetters.map((char, index) => (
-            <motion.span
-              key={index}
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.3 + index * 0.04,
-                ease: [0.2, 1, 0.3, 1],
-              }}
-              className={char === " " ? "w-[3vw]" : "inline-block"}
-            >
-              {char}
-            </motion.span>
+        <h1 className="text-[clamp(3rem,8vw,8rem)] font-heading font-bold leading-[0.9] tracking-tighter mb-6 flex flex-wrap gap-x-[2.5vw]">
+          {name.split(" ").map((word, wordIndex) => (
+            <span key={wordIndex} className="flex whitespace-nowrap">
+              {word.split("").map((char, charIndex) => (
+                <motion.span
+                  key={charIndex}
+                  initial={{ y: 100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.3 + (wordIndex * 8 + charIndex) * 0.04,
+                    ease: [0.2, 1, 0.3, 1],
+                  }}
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
           ))}
         </h1>
 
