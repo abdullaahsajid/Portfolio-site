@@ -24,9 +24,9 @@ export function Contact() {
     
     // Secure your keys from https://dashboard.emailjs.com/
     // To test the logic, replace these placeholder strings with your actual IDs.
-    const serviceID = 'YOUR_SERVICE_ID';
-    const templateID = 'YOUR_TEMPLATE_ID';
-    const publicKey = 'YOUR_PUBLIC_KEY';
+    const serviceID = 'service_g3o4wkn';
+    const templateID = 'template_e0xk9hr';
+    const publicKey = 'USXQF4sJy_qKfx-zr';
 
     emailjs.sendForm(serviceID, templateID, formRef.current, publicKey)
       .then((result) => {
