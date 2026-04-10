@@ -1,7 +1,40 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, useInView, animate } from "framer-motion";
+
+function AnimatedCounter({ from, to, suffix, text, isInView, delay = 0 }: { from: number; to: number; suffix: string; text: string; isInView: boolean; delay?: number }) {
+  const nodeRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (!isInView) return;
+    const controls = animate(from, to, {
+      duration: 2.5,
+      delay,
+      ease: "easeOut",
+      onUpdate(value) {
+        if (nodeRef.current) {
+          nodeRef.current.textContent = Math.round(value) + suffix;
+        }
+      },
+    });
+    return () => controls.stop();
+  }, [from, to, suffix, isInView, delay]);
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.6, delay }}
+      className="flex flex-col p-5 md:p-6 rounded-[1.5rem] bg-black/40 border border-white/5 backdrop-blur-md shadow-xl"
+    >
+      <span className="text-4xl md:text-5xl font-heading font-black text-white mb-2 tracking-tighter">
+        <span ref={nodeRef}>{from}{suffix}</span>
+      </span>
+      <span className="text-sm md:text-base text-primary/90 font-bold leading-snug">{text}</span>
+    </motion.div>
+  );
+}
 
 export function About() {
   const ref = useRef(null);
@@ -10,11 +43,11 @@ export function About() {
   const bio = "A passionate Computer Science student at PAF-IAST Haripur with expertise in graphic design, branding, and creative digital communication. My goal is to grow as a creative tech professional blending CS knowledge with powerful visual design expertise.";
   const words = bio.split(" ");
 
-  const tags = [
-    "8-10+ Professional Designs",
-    "3 Leadership Roles",
-    "Canva Expert",
-    "Creative Direction"
+  const stats = [
+    { value: 10, suffix: "+", text: "Professional Designs" },
+    { value: 3, suffix: "", text: "Leadership Roles" },
+    { value: 100, suffix: "%", text: "Canva Expertise" },
+    { value: 4, suffix: "th\n", text: "Semester CS Student" } // 4th Semester
   ];
 
   return (
@@ -33,7 +66,7 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Text Area */}
           <div>
-            <h3 className="text-2xl md:text-3xl font-heading font-medium leading-relaxed flex flex-wrap gap-x-2 gap-y-1 mb-8">
+            <h3 className="text-2xl md:text-3xl font-heading font-medium leading-relaxed flex flex-wrap gap-x-2 gap-y-1 mb-10">
               {words.map((word, i) => (
                 <div key={i} className="overflow-hidden inline-block">
                   <motion.span
@@ -52,22 +85,18 @@ export function About() {
               ))}
             </h3>
 
-            <div className="flex flex-wrap gap-4 mt-8">
-              {tags.map((tag, i) => (
-                <motion.div
-                  key={tag}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 10,
-                    delay: 0.4 + i * 0.1,
-                  }}
-                  className="px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-sm md:text-base text-white/90"
-                >
-                  {tag}
-                </motion.div>
+            {/* Animated Counters Grid */}
+            <div className="grid grid-cols-2 gap-4 mt-8">
+              {stats.map((stat, i) => (
+                <AnimatedCounter 
+                  key={stat.text}
+                  from={0}
+                  to={stat.value}
+                  suffix={stat.suffix.trim()}
+                  text={stat.text}
+                  isInView={isInView}
+                  delay={0.4 + i * 0.15}
+                />
               ))}
             </div>
           </div>
