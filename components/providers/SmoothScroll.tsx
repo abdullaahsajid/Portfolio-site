@@ -8,15 +8,16 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis>(null);
 
   useEffect(() => {
+    if (window.innerWidth < 768) return;
+
     const lenis = new Lenis({
-      duration: 2.0, // Significantly slower and smoother
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Expo ease out for dramatic glide
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.2,
-      touchMultiplier: 2,
     });
     
-    // @ts-ignore - ref assignment (using ignore just in case any strict limits hit, or cast)
+    // @ts-ignore
     lenisRef.current = lenis as any;
 
     return () => {

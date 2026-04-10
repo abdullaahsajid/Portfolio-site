@@ -47,27 +47,33 @@ export function Hero() {
           </span>
         </motion.div>
 
-        <h1 className="text-[clamp(3rem,8vw,8rem)] font-heading font-bold leading-[0.9] tracking-tighter mb-6 flex flex-wrap gap-x-[2.5vw]">
+        <motion.h1 
+          variants={{
+            hidden: { opacity: 1 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.04, delayChildren: 0.3 } }
+          }}
+          initial="hidden"
+          animate="visible"
+          className="text-[clamp(2.5rem,8vw,6rem)] font-heading font-black leading-[0.9] tracking-tighter mb-6 flex flex-wrap gap-[1vw]"
+        >
           {name.split(" ").map((word, wordIndex) => (
             <span key={wordIndex} className="flex whitespace-nowrap">
               {word.split("").map((char, charIndex) => (
-                <motion.span
-                  key={charIndex}
-                  initial={{ y: 100, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.3 + (wordIndex * 8 + charIndex) * 0.04,
-                    ease: [0.2, 1, 0.3, 1],
-                  }}
-                  className="inline-block"
-                >
-                  {char}
-                </motion.span>
+                <span key={charIndex} className="overflow-hidden inline-block pb-4 -mb-4">
+                  <motion.span
+                    variants={{
+                      hidden: { y: 80, opacity: 0, filter: "blur(8px)" },
+                      visible: { y: 0, opacity: 1, filter: "blur(0px)", transition: { type: "spring", damping: 12, stiffness: 100 } }
+                    }}
+                    className="inline-block"
+                  >
+                    {char}
+                  </motion.span>
+                </span>
               ))}
             </span>
           ))}
-        </h1>
+        </motion.h1>
 
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
