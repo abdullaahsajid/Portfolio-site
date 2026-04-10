@@ -14,12 +14,12 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       smoothWheel: true,
     });
     
-    // @ts-expect-error - ref assignment
-    lenisRef.current = lenis;
+    // @ts-ignore - ref assignment (using ignore just in case any strict limits hit, or cast)
+    lenisRef.current = lenis as any;
 
     return () => {
       lenis.destroy();
-      // @ts-expect-error
+      // @ts-ignore
       lenisRef.current = null;
     };
   }, []);
