@@ -3,11 +3,13 @@
 import { useRef, useEffect } from "react";
 import { motion, useInView, animate } from "framer-motion";
 
-function AnimatedCounter({ from, to, suffix, text, isInView, delay = 0 }: { from: number; to: number; suffix: string; text: string; isInView: boolean; delay?: number }) {
+function AnimatedCounter({ from, to, suffix, text, delay = 0 }: { from: number; to: number; suffix: string; text: string; delay?: number }) {
   const nodeRef = useRef<HTMLSpanElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isVisible = useInView(containerRef, { once: true, margin: "0px 0px -50px 0px" });
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isVisible) return;
     const controls = animate(from, to, {
       duration: 2.5,
       delay,
@@ -19,12 +21,13 @@ function AnimatedCounter({ from, to, suffix, text, isInView, delay = 0 }: { from
       },
     });
     return () => controls.stop();
-  }, [from, to, suffix, isInView, delay]);
+  }, [from, to, suffix, isVisible, delay]);
 
   return (
     <motion.div 
+      ref={containerRef}
       initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, delay }}
       className="flex flex-col p-5 md:p-6 rounded-[1.5rem] bg-black/40 border border-white/5 backdrop-blur-md shadow-xl"
     >
@@ -94,8 +97,7 @@ export function About() {
                   to={stat.value}
                   suffix={stat.suffix.trim()}
                   text={stat.text}
-                  isInView={isInView}
-                  delay={0.4 + i * 0.15}
+                  delay={0.1 + i * 0.15}
                 />
               ))}
             </div>
