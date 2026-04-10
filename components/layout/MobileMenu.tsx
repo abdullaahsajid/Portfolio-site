@@ -29,8 +29,8 @@ const mobileLinkVars = {
   animate: { y: 0, transition: { ease: [0, 0.55, 0.45, 1] as never, duration: 0.7 } },
 };
 
-// @ts-expect-error simple types
-export function MobileMenu({ links, onClose }) {
+// @ts-ignore simple types
+export function MobileMenu({ links, onClose }: { links: any[], onClose: () => void }) {
   return (
     <motion.div
       variants={menuVars}
