@@ -83,7 +83,7 @@ export function Contact() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full max-w-lg mx-auto">
               <MagneticButton 
-                href="https://wa.me/923000000000" 
+                href="https://wa.me/923139065549" 
                 className="w-full sm:w-auto px-10 py-5 rounded-full font-bold bg-[#25D366] text-white tracking-widest text-sm uppercase"
               >
                 <div className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.2,1,0.3,1] pointer-events-none" />
@@ -94,7 +94,7 @@ export function Contact() {
               </MagneticButton>
 
               <MagneticButton 
-                href="mailto:abdullahsajid100@gmail.com" 
+                href="mailto:abdullaahsajid@gmail.com" 
                 className="w-full sm:w-auto px-10 py-5 rounded-full font-bold bg-white text-black tracking-widest text-sm uppercase"
               >
                 <div className="absolute inset-0 bg-primary translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.2,1,0.3,1] pointer-events-none" />
