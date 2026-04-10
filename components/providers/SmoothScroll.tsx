@@ -9,9 +9,11 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2, // easeInOutCubic
+      duration: 2.0, // Significantly slower and smoother
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Expo ease out for dramatic glide
       smoothWheel: true,
+      wheelMultiplier: 1.2,
+      touchMultiplier: 2,
     });
     
     // @ts-ignore - ref assignment (using ignore just in case any strict limits hit, or cast)
