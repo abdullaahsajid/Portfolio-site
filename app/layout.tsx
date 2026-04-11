@@ -14,7 +14,10 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Abdullah Sajid | Creative Tech Professional",
+  title: {
+    default: "Abdullah Sajid | Creative Tech",
+    template: "%s | Abdullah Sajid",
+  },
   description: "Portfolio of Abdullah Sajid, a CS Student, Graphic Designer, and Creative Tech Professional based in Haripur.",
 };
 
