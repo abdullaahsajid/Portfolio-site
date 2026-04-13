@@ -12,6 +12,7 @@ const projects = [
   { id: 6, image: "/design-6.png" },
   { id: 7, image: "/design-7.png" },
   { id: 8, image: "/design-8.png" },
+  { id: 9, image: "/design-9.png" },
 ];
 
 export function Portfolio() {
